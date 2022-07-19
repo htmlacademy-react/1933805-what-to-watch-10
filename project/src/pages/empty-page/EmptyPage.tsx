@@ -1,7 +1,7 @@
-import FilmCard from '../../components/film-card/FilmCard';
-import Footer from '../../components/footer/footer';
+import { Link } from 'react-router-dom';
 import Logo from '../../components/logo/logo';
-function MyListPage(): JSX.Element {
+
+function EmptyPage(): JSX.Element {
   return (
     <body>
       <div className="visually-hidden">
@@ -33,43 +33,29 @@ function MyListPage(): JSX.Element {
         </svg>
       </div>
 
-      <div className="user-page">
-        <header className="page-header user-page__head">
+      <section className="film-card">
+        <div className="film-card__bg">
+          <img src="img/bg-header.jpg" alt="Some background" />
+        </div>
+
+        <h1 className="visually-hidden">WTW</h1>
+
+        <header className="page-header">
           <Logo />
 
-          <h1 className="page-title user-page__title">My list <span className="user-page__film-count">9</span></h1>
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </li>
-            <li className="user-block__item">
-              <a href="#section" className="user-block__link">Sign out</a>
-            </li>
-          </ul>
+          <div className="user-block">
+            <a href="sign-in.html" className="user-block__link">Sign in</a>
+          </div>
         </header>
 
-        <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
+      </section>
+      <div>
+        <p>404 Not Found</p>
 
-          <div className="catalog__films-list">
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-            <FilmCard />
-          </div>
-        </section>
-
-        <Footer />
+        <Link to="/">Go to main page</Link>
       </div>
     </body>
   );
 }
 
-export default MyListPage;
+export default EmptyPage;
