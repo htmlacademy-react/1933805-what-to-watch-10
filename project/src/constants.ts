@@ -1,13 +1,10 @@
 export enum AppRoute {
-  Login = '/login',
+  SignIn = '/login',
   MyList = '/mylist',
   Film = '/films/:id',
+  Main = '/',
   AddReview = '/films/:id/review',
-  Root = '/',
   Player = '/player/:id',
-  NotFound = '*',
-  SignIn = 'SignIn',
-  Main = 'Main'
 }
 
 export enum AuthorizationStatus {
