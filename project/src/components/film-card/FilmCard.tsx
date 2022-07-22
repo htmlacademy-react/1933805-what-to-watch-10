@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
 
 
-type FilmCardProps = {
+type Preview = {
   id: number;
   previewImage: string;
   name: string;
   setActiveCard: (id: number) => void;
 }
 
-function FilmCard({ id, previewImage, name, setActiveCard }: FilmCardProps): JSX.Element {
+function FilmCard({ id, previewImage, name, setActiveCard }: Preview): JSX.Element {
   return (
     <article className="small-film-card catalog__films-card" onMouseEnter={() => setActiveCard(id)}>
       <div className="small-film-card__image">
