@@ -10,14 +10,14 @@ import PrivateRoute from '../private-route/PrivateRoute';
 import { Film } from '../../types/films';
 import AddReviewPage from '../../pages/add-review-page/AddReviewPage';
 
-type MainPageProps = {
+type MainPageFilm = {
   title: string;
   genre: string;
   releaseDate: number;
   films: Film[];
 }
 
-function App({ title, genre, releaseDate, films }: MainPageProps): JSX.Element {
+function App({ title, genre, releaseDate, films }: MainPageFilm): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -45,7 +45,7 @@ function App({ title, genre, releaseDate, films }: MainPageProps): JSX.Element {
           }
         />
         <Route path={AppRoute.Player} element={<PlayerPage films={films} />} />
-        <Route path="*" element={<EmptyPage />} />
+        <Route path={AppRoute.NotFound} element={<EmptyPage />} />
       </Routes>
     </BrowserRouter>
   );

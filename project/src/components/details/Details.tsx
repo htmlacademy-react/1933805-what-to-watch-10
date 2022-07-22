@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { Film } from '../../types/films';
+import {huminazeFilmDuration} from '../../utils';
 
 type DetailsProps = {
   films: Film[];
@@ -10,17 +11,6 @@ function Details({ films }: DetailsProps): JSX.Element {
   const film = films.find((filmA) => String(filmA.id) === params.id) as Film;
 
   const actorsList = film.starring[0].split(',').map((star) => `${star}`, '');
-
-  const huminazeFilmDuration = (minutes: number) => {
-    const MINUTES_IN_HOUR = 60;
-    const hours = minutes / MINUTES_IN_HOUR;
-    if (hours < 1) {
-      return `${minutes}m`;
-    } else if ((minutes % MINUTES_IN_HOUR) === 0) {
-      return `${hours.toFixed(0)}h`;
-    }
-    return `${hours.toFixed(0)}h ${minutes % MINUTES_IN_HOUR}m`;
-  };
 
   return (
     <>
