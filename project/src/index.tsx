@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
-
+import { FILMS } from './mocks/films';
 
 const filmDetails = {
   TITLE: 'The Grand Budapest Hotel',
@@ -19,6 +19,7 @@ root.render(
       title={filmDetails.TITLE}
       genre={filmDetails.GENRE}
       releaseDate={filmDetails.RELEASE_DATE}
+      films={FILMS}
     />
 
   </React.StrictMode>,
