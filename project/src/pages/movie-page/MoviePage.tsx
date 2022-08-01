@@ -1,19 +1,23 @@
-import FilmCard from '../../components/film-card/FilmCard';
+import FilmsList from '../../components/films-list/FilmsList';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import { Film } from '../../types/films';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { useState } from 'react';
 import Overview from '../../components/overview/Overview';
+import Details from '../../components/details/Details';
+import Reviews from '../../components/reviews/Reviews';
+import { Tab } from '../../constants';
+import { getTab } from '../../utils/utils';
+import Tabs from '../../components/tabs/tabs';
 
 type MoviePageProps = {
-  films: Film[];
+  similarFilms: Film[];
 }
 
-function MoviePage({ films }: MoviePageProps): JSX.Element {
+function MoviePage({ similarFilms }: MoviePageProps): JSX.Element {
   const navigate = useNavigate();
   const params = useParams();
-  const film = films.find((filmA) => String(filmA.id) === params.id) as Film;
+  const film = similarFilms.find((filmA) => String(filmA.id) === params.id) as Film;
 
   const onPlayButtonClickHandler = () => {
     const path = `/player/${film.id}`;
@@ -24,13 +28,7 @@ function MoviePage({ films }: MoviePageProps): JSX.Element {
     const path = '/mylist';
     navigate(path);
   };
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [count, setActiveCard] = useState(0);
-
-  const setActive = (id: number) => {
-    setActiveCard(id);
-  };
+  const tab = getTab();
 
   return (
     <body>
@@ -109,7 +107,7 @@ function MoviePage({ films }: MoviePageProps): JSX.Element {
                     <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
-                  <span className="film-card__count">{films.length}</span>
+                  <span className="film-card__count">{similarFilms.length}</span>
                 </button>
                 <Link to={`/films/${film.id}/review`} className="btn film-card__button">Add review</Link>
               </div>
@@ -124,7 +122,22 @@ function MoviePage({ films }: MoviePageProps): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <Overview films={films} />
+              <Tabs />
+
+              {
+                tab === Tab.Overview &&
+                <Overview films={similarFilms} />
+              }
+
+              {
+                tab === Tab.Details &&
+                <Details films={similarFilms} />
+              }
+
+              {
+                tab === Tab.Reviews &&
+                <Reviews />
+              }
             </div>
           </div>
         </div>
@@ -135,10 +148,7 @@ function MoviePage({ films }: MoviePageProps): JSX.Element {
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
-            <FilmCard id={film.id} previewImage={film.previewImage} name={film.name} setActiveCard={setActive} />
-            <FilmCard id={film.id} previewImage={film.previewImage} name={film.name} setActiveCard={setActive} />
-            <FilmCard id={film.id} previewImage={film.previewImage} name={film.name} setActiveCard={setActive} />
-            <FilmCard id={film.id} previewImage={film.previewImage} name={film.name} setActiveCard={setActive} />
+            <FilmsList films={similarFilms} />
           </div>
         </section>
 
