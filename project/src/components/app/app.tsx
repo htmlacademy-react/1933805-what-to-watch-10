@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../constants';
-import MainPage from '../../pages/main-page/main-page';
+import MainPage from '../../pages/main-page/MainPage';
 import LoginPage from '../../pages/login-page/LoginPage';
 import MyList from '../../pages/my-list-page/MyListPage';
 import MoviePage from '../../pages/movie-page/MoviePage';
